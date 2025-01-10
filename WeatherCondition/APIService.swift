@@ -13,6 +13,12 @@ protocol APIServiceProtocol {
 }
 
 class APIService {
+    let apiKey = "77233f733b24946fbf525301e1943a2b"
+    let openWeatherAPI = "https://api.openweathermap.org/"
+    let geoCodePath = "geo/1.0/direct?"
+    let currentWeatherPath = "data/2.5/weather?"
+    let forcastPath = "data/2.5/forecast?"
+    
     
     
 }
