@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+enum ConditionTheme {
+    case rainy
+    case cloudy
+    case clear
+}
+
 class WeatherViewModel {
     @Published var city = ""
     @Published var showActivityIndicator: Bool = false
