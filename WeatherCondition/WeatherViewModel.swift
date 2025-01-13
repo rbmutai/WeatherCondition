@@ -22,4 +22,6 @@ class WeatherViewModel {
     @Published var minimumTemperature: String = ""
     @Published var maximumTemperature: String = ""
     @Published var conditions: String = ""
+    @Published var weatherTheme: ConditionTheme = .clear
+    @Published var forcastDetail: [ForcastDetail] = []
 }
