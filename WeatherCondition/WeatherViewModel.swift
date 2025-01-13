@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum ConditionTheme {
+enum ConditionTheme: String {
     case rainy
     case cloudy
     case clear
