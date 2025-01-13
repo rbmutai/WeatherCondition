@@ -9,6 +9,14 @@ import Foundation
 
 struct Main: Decodable {
        let temp: Double
+       let tempMin: Double
+       let tempMax: Double
+     
+       enum CodingKeys: String, CodingKey {
+            case temp
+            case tempMin = "temp_min"
+            case tempMax = "temp_max"
+       }
 }
 
 struct Weather: Decodable {
@@ -27,4 +35,10 @@ struct Current: Decodable {
 
 struct Forcast: Decodable {
     let list: [Current]
+}
+
+struct ForcastDetail {
+    let day: String
+    let theme: ConditionTheme
+    let temperature: String
 }
