@@ -20,7 +20,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var weatherImage: UIImageView!
     let locationManager = CLLocationManager()
-    var isFirst: Bool = true
     var coodinates: CLLocation?
     private var subscribers = Set<AnyCancellable>()
     var viewModel : WeatherViewModel?
@@ -148,13 +147,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let geoLocation = locations.first {
             coodinates = geoLocation
-            if isFirst {
-                isFirst = false
-                
-                Task {
-                    await viewModel?.getWeather(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
-                }
-                
+            
+            Task {
+                await viewModel?.getWeather(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
             }
         }
     }
