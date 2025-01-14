@@ -124,14 +124,14 @@ class WeatherViewModel {
     func updateWeatherForcastDetails(forcast:[Current]){
         forcastDetail = []
         var previousDay = ""
-        let today = getDayOfWeek(timeStamp: Date().timeIntervalSince1970)
+       // let today = getDayOfWeek(timeStamp: Date().timeIntervalSince1970)
         
         for item in forcast {
              let dayOfWeek = getDayOfWeek(timeStamp: Double(item.dt))
              let theme = getWeatherTheme(conditions: item.weather[0].description)
              let temperature = "\(item.main.temp)º"
             
-             if previousDay != dayOfWeek && dayOfWeek != today {
+             if previousDay != dayOfWeek {
                  let forcastItem = ForcastDetail(day: dayOfWeek, theme: theme, temperature: temperature)
                  forcastDetail.append(forcastItem)
                  previousDay = dayOfWeek

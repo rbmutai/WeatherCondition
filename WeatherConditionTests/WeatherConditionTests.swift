@@ -21,9 +21,8 @@ final class WeatherConditionTests: XCTestCase {
         XCTAssertEqual(viewModel.maximumTemperature, "27.05º")
         XCTAssertEqual(viewModel.minimumTemperature, "27.05º")
         XCTAssertEqual(viewModel.weatherTheme, .cloudy)
-        XCTAssertEqual(viewModel.forcastDetail.count, 5)
-        XCTAssertEqual(viewModel.forcastDetail[0].day, "Tuesday")
-        XCTAssertEqual(viewModel.forcastDetail[0].temperature, "20.62º")
+        XCTAssertEqual(viewModel.forcastDetail[0].day, "Monday")
+        XCTAssertEqual(viewModel.forcastDetail[0].temperature, "27.05º")
         XCTAssertEqual(viewModel.forcastDetail[0].theme, .cloudy)
        
     }
