@@ -45,5 +45,21 @@ class MockAPIService: APIServiceProtocol {
         }
     }
     
+    func fetchLocationDetail(latitude: Double, longitude: Double) async throws -> [ResultDetail] {
+        guard let bundleUrl = Bundle.main.url(forResource: "LocationDetailData", withExtension: "json") else {
+            throw ResultError.data }
+        
+        do {
+            let data = try Data(contentsOf: bundleUrl)
+            
+            let decoder = JSONDecoder()
+            let locationDetail = try decoder.decode(LocationDetail.self, from: data)
+            
+            return locationDetail.results
+            
+        } catch {
+            throw ResultError.parsing
+        }
+    }
     
 }
