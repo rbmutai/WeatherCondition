@@ -54,17 +54,7 @@ class WeatherViewModel {
                 
             } catch {
                 showActivityIndicator = false
-                
-                switch error {
-                    case ResultError.network:
-                        errorMessage = "Network error"
-                    case ResultError.parsing:
-                        errorMessage = "Parsing error"
-                    case ResultError.data:
-                        errorMessage = "Data error"
-                    default:
-                        errorMessage = "Error: \(error.localizedDescription)"
-                }
+                processError(error: error)
             }
         
     }
@@ -81,18 +71,20 @@ class WeatherViewModel {
             
         } catch  {
             showActivityIndicator = false
-            
-            switch error {
-                case ResultError.network:
-                    errorMessage = "Network error"
-                case ResultError.parsing:
-                    errorMessage = "Parsing error"
-                case ResultError.data:
-                    errorMessage = "Data error"
-                default:
-                    errorMessage = "Error: \(error.localizedDescription)"
-            }
-
+            processError(error: error)
+        }
+    }
+    
+    func processError(error: Error){
+        switch error {
+            case ResultError.network:
+                errorMessage = "Network error"
+            case ResultError.parsing:
+                errorMessage = "Parsing error"
+            case ResultError.data:
+                errorMessage = "Data error"
+            default:
+                errorMessage = "Error: \(error.localizedDescription)"
         }
     }
     
@@ -126,7 +118,6 @@ class WeatherViewModel {
     func updateWeatherForcastDetails(forcast:[Current]){
         forcastDetail = []
         var previousDay = ""
-       // let today = getDayOfWeek(timeStamp: Date().timeIntervalSince1970)
         
         for item in forcast {
              let dayOfWeek = getDayOfWeek(timeStamp: Double(item.dt))
