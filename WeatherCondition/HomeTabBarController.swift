@@ -11,7 +11,7 @@ class HomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Weather Conditions"
         // Do any additional setup after loading the view.
     }
     

@@ -12,6 +12,7 @@ enum ConditionTheme: String {
     case rainy
     case cloudy
     case clear
+    case none
 }
 
 class WeatherViewModel {
@@ -22,7 +23,7 @@ class WeatherViewModel {
     @Published var minimumTemperature: String = ""
     @Published var maximumTemperature: String = ""
     @Published var conditions: String = ""
-    @Published var weatherTheme: ConditionTheme = .clear
+    @Published var weatherTheme: ConditionTheme = .none
     @Published var forcastDetail: [ForcastDetail] = []
     
     let apiService: APIServiceProtocol
@@ -125,6 +126,8 @@ class WeatherViewModel {
             return "rain"
         case .clear:
             return "clear"
+        case .none:
+            return ""
         }
     }
     
@@ -136,6 +139,8 @@ class WeatherViewModel {
             return ("forestRainy","Rainy")
         case .clear:
             return ("forestSunny","Sunny")
+        case .none:
+            return ("","None")
         }
     }
     
