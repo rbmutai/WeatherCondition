@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var currentTemperatureMainLabel: UILabel!
     @IBOutlet weak var currentConditionLabel: UILabel!
+    @IBOutlet weak var provinceLabel: UILabel!
+    @IBOutlet weak var streetLabel: UILabel!
     @IBOutlet weak var minimumTemperatureLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var maximumTemperatureLabel: UILabel!
@@ -108,6 +110,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             .assign(to: \.text!, on: locationLabel)
             .store(in: &subscribers)
         
+        viewModel.$street
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text!, on: streetLabel)
+            .store(in: &subscribers)
+        
+        viewModel.$province
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text!, on: provinceLabel)
+            .store(in: &subscribers)
+        
     }
     
     func checkLocationAuthorization() {
@@ -149,7 +161,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             coodinates = geoLocation
             
             Task {
-                await viewModel?.getWeather(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
+                await  viewModel?.getWeather(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
+                
+                await  viewModel?.getLocationDetail(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
             }
         }
     }
@@ -175,10 +189,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let coodinates = coodinates {
             Task {
                 await viewModel?.getWeather(latitude: coodinates.coordinate.latitude, longitude: coodinates.coordinate.longitude)
+                
+                await  viewModel?.getLocationDetail(latitude: coodinates.coordinate.latitude, longitude: coodinates.coordinate.longitude)
             }
         } else {
             enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
         }
+    }
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
     }
     
     func showAlert(message: String) {

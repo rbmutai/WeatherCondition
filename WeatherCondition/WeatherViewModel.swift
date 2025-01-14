@@ -77,6 +77,8 @@ class WeatherViewModel {
             let results = try await apiService.fetchLocationDetail(latitude: latitude, longitude: longitude)
             updateLocationDetails(results: results)
             
+            showActivityIndicator = false
+            
         } catch  {
             showActivityIndicator = false
             
