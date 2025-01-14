@@ -27,5 +27,15 @@ final class WeatherConditionTests: XCTestCase {
         XCTAssertEqual(viewModel.forcastDetail[0].theme, .cloudy)
        
     }
+    
+    func testGetLocationDetails() async {
+        let viewModel = WeatherViewModel(apiService: MockAPIService())
+       
+        await viewModel.getLocationDetail(latitude: -1.3033, longitude: 36.8264)
+        
+        XCTAssertEqual(viewModel.street, "35 Baricho Rd")
+        XCTAssertEqual(viewModel.province, "Nairobi County, Kenya")
+        
+    }
 
 }

@@ -23,6 +23,8 @@ class WeatherViewModel {
     @Published var minimumTemperature: String = ""
     @Published var maximumTemperature: String = ""
     @Published var conditions: String = ""
+    @Published var province: String = ""
+    @Published var street: String = ""
     @Published var weatherTheme: ConditionTheme = .none
     @Published var forcastDetail: [ForcastDetail] = []
     
@@ -65,6 +67,48 @@ class WeatherViewModel {
                 }
             }
         
+    }
+    
+    func getLocationDetail(latitude: Double, longitude: Double) async {
+        
+        do {
+            showActivityIndicator = true
+            
+            let results = try await apiService.fetchLocationDetail(latitude: latitude, longitude: longitude)
+            updateLocationDetails(results: results)
+            
+        } catch  {
+            showActivityIndicator = false
+            
+            switch error {
+                case ResultError.network:
+                    errorMessage = "Network error"
+                case ResultError.parsing:
+                    errorMessage = "Parsing error"
+                case ResultError.data:
+                    errorMessage = "Data error"
+                default:
+                    errorMessage = "Error: \(error.localizedDescription)"
+            }
+
+        }
+    }
+    
+    func updateLocationDetails(results: [ResultDetail]) {
+        
+        for item in results {
+            if item.types.contains("street_address") && street == "" {
+               street = item.formattedAddress.components(separatedBy: ",")[0]
+            }
+            
+            if item.types.contains("administrative_area_level_1") && province == "" {
+                province = item.formattedAddress
+            }
+            
+            if province != "" && street != "" {
+                break
+            }
+        }
     }
     
     func updateCurrentWeatherDetails(current: Current){
