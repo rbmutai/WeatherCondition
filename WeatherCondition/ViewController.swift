@@ -166,10 +166,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
        
         switch locationManager.authorizationStatus {
-            case .restricted:
-                showAlert(message: "The app is restricted from accessing your location.")
-            case .denied:
-                showAlert(message: "Kindly enable the app to access location services in order to get location based weather information")
+        case .restricted, .denied:
+            enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
             case .authorizedWhenInUse:
                 locationManager.startUpdatingLocation()
             default:
@@ -184,7 +182,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 await viewModel?.getWeather(latitude: coodinates.coordinate.latitude, longitude: coodinates.coordinate.longitude)
             }
         } else {
-            showAlert(message: "Kindly enable the app to access location services in order to get location based weather information")
+            enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
         }
     }
     
@@ -193,6 +191,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(action)
         self.present(alert, animated: true)
+    }
+    
+    func enableLocationAlert(message: String){
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+       
+        let approveAction = UIAlertAction(title: "Settings", style: .default) {
+            UIAlertAction in
+            
+                let settingsURL = URL(string: UIApplication.openSettingsURLString)!
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Ignore", style: .default, handler: nil)
+        alert.addAction(approveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
 
