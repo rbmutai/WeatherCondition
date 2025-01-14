@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var refreshButton: UIButton!
     let locationManager = CLLocationManager()
     var coodinates: CLLocation?
     private var subscribers = Set<AnyCancellable>()
@@ -31,6 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.title = "Weather"
         forcastTableView.delegate = self
         forcastTableView.dataSource = self
+        refreshButton.configuration?.baseForegroundColor = UIColor.gray
         
         bind()
         
@@ -56,9 +58,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             .store(in: &subscribers)
         
         viewModel.$forcastDetail
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] value in
                 forcastTableView.reloadData()
+                refreshButton.configuration?.baseForegroundColor = UIColor.white
             })
             .store(in: &subscribers)
         
