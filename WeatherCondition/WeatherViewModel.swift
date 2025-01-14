@@ -127,7 +127,7 @@ class WeatherViewModel {
         case .clear:
             return "clear"
         case .none:
-            return ""
+            return "clear"
         }
     }
     
@@ -140,7 +140,7 @@ class WeatherViewModel {
         case .clear:
             return ("forestSunny","Sunny")
         case .none:
-            return ("","None")
+            return ("clear","None")
         }
     }
     
