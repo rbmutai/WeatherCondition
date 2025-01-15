@@ -20,9 +20,7 @@ class PersistenceController {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                print(error.localizedDescription)
-            }
+            
         })
         
         //viewContext = container.viewContext
