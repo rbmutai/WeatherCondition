@@ -135,26 +135,26 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="YgF-bG-8Go" customClass="WeatherTableViewCell" customModule="WeatherCondition" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="50" width="361" height="73.333335876464844"/>
+                                                        <rect key="frame" x="0.0" y="50" width="361" height="77.333335876464844"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YgF-bG-8Go" id="22w-HM-3wH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="73.333335876464844"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="77.333335876464844"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obW-ym-5Xb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="73.333333333333329"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="77.333333333333329"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIy-Lc-yxe">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="73.333333333333329"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="77.333333333333329"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgL-n3-JdI">
-                                                                            <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="73.333333333333329"/>
+                                                                            <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="77.333333333333329"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ase-Cj-5t9">
-                                                                                    <rect key="frame" x="40.333333333333329" y="16.666666666666671" width="40" height="40"/>
+                                                                                    <rect key="frame" x="40.333333333333329" y="18.666666666666671" width="40" height="40"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="40" id="0Ze-tX-KX7"/>
                                                                                         <constraint firstAttribute="width" constant="40" id="JHc-H0-9sU"/>
@@ -168,7 +168,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 º " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dub-Oo-cXU">
-                                                                            <rect key="frame" x="240.66666666666666" y="0.0" width="120.33333333333334" height="73.333333333333329"/>
+                                                                            <rect key="frame" x="240.66666666666666" y="0.0" width="120.33333333333334" height="77.333333333333329"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -248,6 +248,15 @@
                                                     <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dml-yE-Fcs"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlo-R2-l3f">
+                                                <rect key="frame" x="16" y="203" width="361" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="tet-es-Dl3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Fzr-AO-hR0" secondAttribute="trailing" id="0SK-nI-99n"/>
@@ -264,6 +273,7 @@
                                             <constraint firstAttribute="trailing" secondItem="xxe-Eh-sCv" secondAttribute="trailing" constant="16" id="JRC-tv-FiB"/>
                                             <constraint firstItem="YC4-of-WwD" firstAttribute="top" secondItem="vUV-c9-TY0" secondAttribute="bottom" constant="8" symbolic="YES" id="KGc-Ib-Iq8"/>
                                             <constraint firstItem="vUV-c9-TY0" firstAttribute="centerX" secondItem="qWq-ZK-2Dh" secondAttribute="centerX" id="KOC-2U-sDl"/>
+                                            <constraint firstItem="ifq-fD-SzA" firstAttribute="top" secondItem="Rlo-R2-l3f" secondAttribute="bottom" constant="12" id="LRr-1O-ZXx"/>
                                             <constraint firstItem="rN8-dr-oBG" firstAttribute="top" secondItem="ifq-fD-SzA" secondAttribute="bottom" constant="8" id="Med-ei-l86"/>
                                             <constraint firstItem="YC4-of-WwD" firstAttribute="top" secondItem="vUV-c9-TY0" secondAttribute="bottom" constant="8" symbolic="YES" id="NGq-fj-y0o"/>
                                             <constraint firstItem="ifq-fD-SzA" firstAttribute="leading" secondItem="qWq-ZK-2Dh" secondAttribute="leading" constant="16" id="PSu-cU-8KV"/>
@@ -272,6 +282,7 @@
                                             <constraint firstItem="WSD-tJ-yDQ" firstAttribute="top" secondItem="qWq-ZK-2Dh" secondAttribute="top" constant="16" id="U50-2f-fdh"/>
                                             <constraint firstAttribute="trailing" secondItem="rN8-dr-oBG" secondAttribute="trailing" constant="16" id="Ud2-Dv-dXf"/>
                                             <constraint firstItem="xxe-Eh-sCv" firstAttribute="leading" secondItem="qWq-ZK-2Dh" secondAttribute="leading" constant="16" id="W62-in-J3j"/>
+                                            <constraint firstItem="Rlo-R2-l3f" firstAttribute="leading" secondItem="qWq-ZK-2Dh" secondAttribute="leading" constant="16" id="Wk8-dM-aJF"/>
                                             <constraint firstItem="6wT-Oj-fYo" firstAttribute="top" secondItem="0Xl-3e-DSe" secondAttribute="bottom" constant="8" symbolic="YES" id="XZI-CX-Yo9"/>
                                             <constraint firstItem="ObH-dT-tf2" firstAttribute="top" secondItem="qWq-ZK-2Dh" secondAttribute="top" constant="16" id="XpX-81-IFw"/>
                                             <constraint firstAttribute="trailing" secondItem="0Xl-3e-DSe" secondAttribute="trailing" id="dzD-1P-3Ue"/>
@@ -288,6 +299,7 @@
                                             <constraint firstItem="xxe-Eh-sCv" firstAttribute="leading" secondItem="qWq-ZK-2Dh" secondAttribute="leading" constant="16" id="tcW-V6-18w"/>
                                             <constraint firstItem="5Je-gz-MFl" firstAttribute="top" secondItem="PaG-Cc-3hz" secondAttribute="bottom" constant="32" id="teM-I2-d02"/>
                                             <constraint firstAttribute="trailing" secondItem="MGl-ax-YSQ" secondAttribute="trailing" id="thd-Wk-3ax"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rlo-R2-l3f" secondAttribute="trailing" constant="16" id="uaV-n3-bDS"/>
                                             <constraint firstAttribute="trailing" secondItem="WSD-tJ-yDQ" secondAttribute="trailing" constant="16" id="wJ3-Yz-jNQ"/>
                                             <constraint firstItem="6wT-Oj-fYo" firstAttribute="top" secondItem="0Xl-3e-DSe" secondAttribute="bottom" constant="8" symbolic="YES" id="wcR-2g-jlV"/>
                                             <constraint firstItem="MGl-ax-YSQ" firstAttribute="top" secondItem="5Je-gz-MFl" secondAttribute="bottom" constant="8" symbolic="YES" id="wd1-CX-RJi"/>
@@ -324,6 +336,7 @@
                         <outlet property="currentTemperatureLabel" destination="kFk-dM-Obc" id="8dQ-ig-w5H"/>
                         <outlet property="currentTemperatureMainLabel" destination="vUV-c9-TY0" id="Szh-P0-vck"/>
                         <outlet property="forcastTableView" destination="xxe-Eh-sCv" id="Hmk-AI-Dv4"/>
+                        <outlet property="lastCheckedLabel" destination="Rlo-R2-l3f" id="3Ml-eM-vQ9"/>
                         <outlet property="locationLabel" destination="rN8-dr-oBG" id="XWh-TF-NhU"/>
                         <outlet property="mainView" destination="qWq-ZK-2Dh" id="KhP-Ji-Lhf"/>
                         <outlet property="maximumTemperatureLabel" destination="bGX-tX-U5G" id="Xtv-hO-MeZ"/>

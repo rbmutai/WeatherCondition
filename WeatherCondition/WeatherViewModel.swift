@@ -95,7 +95,8 @@ class WeatherViewModel {
     }
     
     func updateLocationDetails(results: [ResultDetail]) {
-        
+        street = ""
+        province = ""
         for item in results {
             if item.types.contains("street_address") && street == "" {
                street = item.formattedAddress.components(separatedBy: ",")[0]
@@ -109,6 +110,9 @@ class WeatherViewModel {
                 break
             }
         }
+        
+        
+        persistence.saveCurrentLocation(city: city, street: street, province: province)
     }
     
     func updateCurrentWeatherDetails(current: Current){
@@ -142,7 +146,7 @@ class WeatherViewModel {
         persistence.saveWeatherForcast(forcast: forcastDetail)
     }
     
-    func getSavedWeather() {
+    func loadSavedData() {
         
         if let currentWeather = persistence.getCurrentWeather() {
             if currentTemperature == "" {
@@ -166,6 +170,18 @@ class WeatherViewModel {
         
         if forcastDetail.count == 0 && forcast.count > 0 {
             forcastDetail = forcast
+        }
+        
+        if let currentLocation = persistence.getCurrentLocation() {
+            if city == "" {
+                city = currentLocation.city
+            }
+            if street == "" {
+                street =  currentLocation.street
+            }
+            if province == "" {
+                province = currentLocation.province
+            }
         }
         
     }

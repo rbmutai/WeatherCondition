@@ -29,7 +29,7 @@ class PersistenceController {
     
     func saveCurrentWeather(currentTemperature: String, maximumTemperature: String, minimumTemperature: String, conditions: String){
         
-        deleteWeather(entityName: "WeatherCurrent")
+        deleteDetails(entityName: "WeatherCurrent")
         
         if let entity = NSEntityDescription.entity(forEntityName: "WeatherCurrent", in: viewContext){
             let object = NSManagedObject(entity: entity, insertInto: viewContext)
@@ -76,7 +76,7 @@ class PersistenceController {
     
     func saveWeatherForcast(forcast: [ForcastDetail]){
         
-        deleteWeather(entityName: "WeatherForcast")
+        deleteDetails(entityName: "WeatherForcast")
         
         for item in forcast {
             
@@ -125,7 +125,50 @@ class PersistenceController {
         return forcast
     }
     
-    func deleteWeather(entityName: String) {
+    func saveCurrentLocation(city: String, street: String, province: String){
+        
+        deleteDetails(entityName: "CurrentLocation")
+        
+        if let entity = NSEntityDescription.entity(forEntityName: "CurrentLocation", in: viewContext){
+            let object = NSManagedObject(entity: entity, insertInto: viewContext)
+            object.setValue(city, forKey: "city")
+            object.setValue(street, forKey: "street")
+            object.setValue(province, forKey: "province")
+        }
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getCurrentLocation() -> (city: String, street: String, province: String)? {
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentLocation")
+        
+        do {
+            let object = try viewContext.fetch(fetchRequest)
+              if let item = object.first {
+                let city = item.value(forKey: "city") as? String ?? ""
+                let street = item.value(forKey: "street") as? String ?? ""
+                let province = item.value(forKey: "province") as? String ?? ""
+               
+                return (city, street, province)
+            }
+            
+            return .none
+            
+        } catch let error as NSError {
+            print("Error \(error.localizedDescription)")
+        }
+        
+        return .none
+    }
+    
+    func deleteDetails(entityName: String) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         do {
             let object = try viewContext.fetch(fetchRequest)

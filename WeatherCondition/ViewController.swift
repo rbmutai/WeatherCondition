@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var lastCheckedLabel: UILabel!
     let locationManager = CLLocationManager()
     var coodinates: CLLocation?
     private var subscribers = Set<AnyCancellable>()
@@ -124,6 +125,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             .assign(to: \.text!, on: provinceLabel)
             .store(in: &subscribers)
         
+        viewModel.$lastChecked
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text!, on: lastCheckedLabel)
+            .store(in: &subscribers)
+        
+        viewModel.loadSavedData()
     }
     
     func checkLocationAuthorization() {
@@ -201,6 +208,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Alert", message: "Save \(viewModel?.city ?? "location") to favourites?", preferredStyle: .alert)
+         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self]
+             UIAlertAction in
+             self?.viewModel?.saveLocation()
+         }
+         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+         alert.addAction(saveAction)
+         alert.addAction(cancelAction)
+         present(alert, animated: true, completion: nil)
     }
     
     func showAlert(message: String) {
