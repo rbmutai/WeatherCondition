@@ -7,7 +7,13 @@
 
 import Foundation
 import Combine
-class FavouritesViewModel {
+
+protocol FavouritesViewModelProtocol: AnyObject {
+    func favouriteSaved()
+}
+
+class FavouritesViewModel: FavouritesViewModelProtocol {
+    
     @Published var favouriteLocations: [FavouriteLocationDetail] = []
     @Published var errorMessage = ""
     let persistence = PersistenceController.shared
@@ -18,5 +24,9 @@ class FavouritesViewModel {
         if favouriteLocations.count == 0 {
             errorMessage = "No Locations Saved!"
         }
+    }
+    
+    func favouriteSaved() {
+        favouriteLocations = persistence.getFaouriteLocations()
     }
 }

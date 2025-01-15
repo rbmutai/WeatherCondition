@@ -13,14 +13,13 @@ class AppCoordinator : Coordinator {
     func start() {
         guard let homeTabBarController = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController") as? HomeTabBarController else { return }
         
-        guard let checkWeather = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else { return }
-        let weatherViewModel = WeatherViewModel(apiService: APIService())
-        checkWeather.viewModel = weatherViewModel
-        
-      
         guard let favourites = storyboard.instantiateViewController(withIdentifier: "FavouritesViewController") as? FavouritesViewController else { return }
         let favouritesViewModel = FavouritesViewModel()
         favourites.viewModel = favouritesViewModel
+        
+        guard let checkWeather = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else { return }
+        let weatherViewModel = WeatherViewModel(apiService: APIService(), delegate: favouritesViewModel)
+        checkWeather.viewModel = weatherViewModel
 
         homeTabBarController.viewControllers = [checkWeather, favourites]
         

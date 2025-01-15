@@ -23,7 +23,6 @@ class PersistenceController {
             
         })
         
-        //viewContext = container.viewContext
         viewContext = container.newBackgroundContext()
     }
     
