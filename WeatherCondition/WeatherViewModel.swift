@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 enum ConditionTheme: String {
-    case rainy
-    case cloudy
+    case rain
+    case cloud
     case clear
     case none
 }
@@ -145,21 +145,21 @@ class WeatherViewModel {
     
     func getWeatherTheme(conditions: String) -> ConditionTheme {
         if conditions.contains("cloud") {
-            return .cloudy
+            return .cloud
         } else if conditions.contains("rain") || conditions.contains("drizzle") || conditions.contains("snow") {
-            return .rainy
+            return .rain
         } else if conditions.contains("clear") {
             return .clear
-        } else{
-            return .rainy
+        } else {
+            return .rain
         }
     }
     
     func getWeatherIcon(theme: ConditionTheme)-> String {
         switch theme {
-        case .cloudy:
+        case .cloud:
             return "partlySunny"
-        case .rainy:
+        case .rain:
             return "rain"
         case .clear:
             return "clear"
@@ -170,9 +170,9 @@ class WeatherViewModel {
     
     func getWeatherBackground(theme: ConditionTheme)-> (imageName: String, colorName: String) {
         switch theme {
-        case .cloudy:
+        case .cloud:
             return ("forestCloudy", "Cloudy")
-        case .rainy:
+        case .rain:
             return ("forestRainy","Rainy")
         case .clear:
             return ("forestSunny","Sunny")
