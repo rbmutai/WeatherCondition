@@ -136,23 +136,23 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="YgF-bG-8Go" customClass="WeatherTableViewCell" customModule="WeatherCondition" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="50" width="361" height="77.666664123535156"/>
+                                                        <rect key="frame" x="0.0" y="50" width="361" height="78"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YgF-bG-8Go" id="22w-HM-3wH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="77.666664123535156"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="78"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obW-ym-5Xb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="77.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="78"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIy-Lc-yxe">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="77.666666666666671"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="78"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgL-n3-JdI">
-                                                                            <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="77.666666666666671"/>
+                                                                            <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="78"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ase-Cj-5t9">
                                                                                     <rect key="frame" x="40.333333333333329" y="19" width="40" height="40"/>
@@ -169,7 +169,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 º " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dub-Oo-cXU">
-                                                                            <rect key="frame" x="240.66666666666666" y="0.0" width="120.33333333333334" height="77.666666666666671"/>
+                                                                            <rect key="frame" x="240.66666666666666" y="0.0" width="120.33333333333334" height="78"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -361,10 +361,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q8q-pv-zvI">
-                                <rect key="frame" x="0.0" y="59" width="393" height="300"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Dzi-FN-jt0"/>
+                                    <constraint firstAttribute="height" constant="250" id="Dzi-FN-jt0"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FTP-pD-fqr" customClass="FavouritesTableViewCell" customModule="WeatherCondition" customModuleProvider="target">
@@ -392,13 +392,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cityLabel" destination="AV1-ne-gMx" id="R5v-lb-6XF"/>
+                                            <outlet property="cityLabel" destination="Bca-hR-vVY" id="GEv-ku-xGl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Prq-9J-xN8">
-                                <rect key="frame" x="0.0" y="359" width="393" height="410"/>
+                                <rect key="frame" x="0.0" y="309" width="393" height="460"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                         </subviews>

@@ -19,6 +19,8 @@ class AppCoordinator : Coordinator {
         
       
         guard let favourites = storyboard.instantiateViewController(withIdentifier: "FavouritesViewController") as? FavouritesViewController else { return }
+        let favouritesViewModel = FavouritesViewModel()
+        favourites.viewModel = favouritesViewModel
 
         homeTabBarController.viewControllers = [checkWeather, favourites]
         

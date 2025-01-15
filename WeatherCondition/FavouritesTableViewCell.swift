@@ -8,8 +8,7 @@
 import UIKit
 
 class FavouritesTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var cityLabel: UIView!
+    @IBOutlet weak var cityLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
