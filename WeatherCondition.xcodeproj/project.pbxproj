@@ -29,6 +29,7 @@
 		717EF0412D3578BC00A6E340 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 717EF0402D3578BC00A6E340 /* CurrentWeather.json */; };
 		717EF0432D3578D000A6E340 /* ForcastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 717EF0422D3578D000A6E340 /* ForcastWeather.json */; };
 		717EF0462D35797500A6E340 /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717EF0452D35797500A6E340 /* MockAPIService.swift */; };
+		71827F892D37A106007407C0 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71827F882D37A106007407C0 /* PersistenceController.swift */; };
 		71B5A4C22D36784000999409 /* LocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5A4C12D36784000999409 /* LocationDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		717EF0402D3578BC00A6E340 /* CurrentWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
 		717EF0422D3578D000A6E340 /* ForcastWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ForcastWeather.json; sourceTree = "<group>"; };
 		717EF0452D35797500A6E340 /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		71827F882D37A106007407C0 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		71B5A4C12D36784000999409 /* LocationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				71B5A4C12D36784000999409 /* LocationDetail.swift */,
 				713596222D310A7E0048DB57 /* APIService.swift */,
 				717EF0452D35797500A6E340 /* MockAPIService.swift */,
+				71827F882D37A106007407C0 /* PersistenceController.swift */,
 				712D88AC2D36476000274640 /* Coordinator.swift */,
 				712D88AE2D36479400274640 /* AppCoordinator.swift */,
 				717EF0442D3578F500A6E340 /* MockData */,
@@ -320,6 +323,7 @@
 				717EF0462D35797500A6E340 /* MockAPIService.swift in Sources */,
 				712D88A92D36464D00274640 /* HomeTabBarController.swift in Sources */,
 				712D88AD2D36476000274640 /* Coordinator.swift in Sources */,
+				71827F892D37A106007407C0 /* PersistenceController.swift in Sources */,
 				713595F02D3106980048DB57 /* SceneDelegate.swift in Sources */,
 				713596232D310A7E0048DB57 /* APIService.swift in Sources */,
 				712D88AB2D36467700274640 /* FavouritesViewController.swift in Sources */,

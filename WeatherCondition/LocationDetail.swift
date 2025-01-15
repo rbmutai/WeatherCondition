@@ -30,3 +30,11 @@ struct AddressDetail: Decodable {
         case longName = "long_name"
     }
 }
+
+struct FavouriteLocationDetail {
+    let street: String
+    let city: String
+    let province: String
+    let latitude: Double
+    let longitude: Double
+}
