@@ -25,7 +25,8 @@ class PersistenceController {
             }
         })
         
-        viewContext = container.viewContext
+        //viewContext = container.viewContext
+        viewContext = container.newBackgroundContext()
     }
     
     func saveCurrentWeather(currentTemperature: String, maximumTemperature: String, minimumTemperature: String, conditions: String){
