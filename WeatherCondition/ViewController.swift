@@ -130,6 +130,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             .assign(to: \.text!, on: lastCheckedLabel)
             .store(in: &subscribers)
         
+        viewModel.$refreshEnabled
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.isEnabled, on: refreshButton)
+            .store(in: &subscribers)
+        
         viewModel.loadSavedData()
     }
     

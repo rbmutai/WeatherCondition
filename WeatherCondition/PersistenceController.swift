@@ -21,6 +21,7 @@ class PersistenceController {
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+                print(error.localizedDescription)
             }
         })
         

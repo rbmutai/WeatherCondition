@@ -17,19 +17,20 @@ enum ConditionTheme: String {
 
 class WeatherViewModel {
     @Published var city = ""
-    @Published var showActivityIndicator: Bool = false
-    @Published var errorMessage: String = ""
-    @Published var currentTemperature: String = ""
-    @Published var minimumTemperature: String = ""
-    @Published var maximumTemperature: String = ""
-    @Published var conditions: String = ""
-    @Published var province: String = ""
-    @Published var street: String = ""
+    @Published var showActivityIndicator = false
+    @Published var errorMessage = ""
+    @Published var currentTemperature = ""
+    @Published var minimumTemperature = ""
+    @Published var maximumTemperature = ""
+    @Published var conditions = ""
+    @Published var province = ""
+    @Published var street = ""
     @Published var lastChecked = ""
+    @Published var refreshEnabled = true
     @Published var weatherTheme: ConditionTheme = .none
     @Published var forcastDetail: [ForcastDetail] = []
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+    var latitude = 0.0
+    var longitude = 0.0
     let persistence = PersistenceController.shared
     let apiService: APIServiceProtocol
     
@@ -42,6 +43,7 @@ class WeatherViewModel {
             do {
                
                 showActivityIndicator = true
+                refreshEnabled = false
                 
                 async let currentWeather = apiService.fetchCurrentWeather(latitude: latitude, longitude: longitude)
                 
@@ -54,12 +56,13 @@ class WeatherViewModel {
                 updateWeatherForcastDetails(forcast: forcast)
                 
                 showActivityIndicator = false
-                
+                refreshEnabled = true
                 self.latitude = latitude
                 self.longitude = longitude
                 
             } catch {
                 showActivityIndicator = false
+                refreshEnabled = true
                 processError(error: error)
             }
         
@@ -69,14 +72,17 @@ class WeatherViewModel {
         
         do {
             showActivityIndicator = true
+            refreshEnabled = false
             
             let results = try await apiService.fetchLocationDetail(latitude: latitude, longitude: longitude)
             updateLocationDetails(results: results)
             
             showActivityIndicator = false
+            refreshEnabled = true
             
         } catch  {
             showActivityIndicator = false
+            refreshEnabled = true
             processError(error: error)
         }
     }
