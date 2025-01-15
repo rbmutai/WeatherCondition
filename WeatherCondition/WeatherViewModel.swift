@@ -25,9 +25,12 @@ class WeatherViewModel {
     @Published var conditions: String = ""
     @Published var province: String = ""
     @Published var street: String = ""
+    @Published var lastChecked = ""
     @Published var weatherTheme: ConditionTheme = .none
     @Published var forcastDetail: [ForcastDetail] = []
-    
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    let persistence = PersistenceController.shared
     let apiService: APIServiceProtocol
     
     init(apiService: APIServiceProtocol) {
@@ -51,6 +54,9 @@ class WeatherViewModel {
                 updateWeatherForcastDetails(forcast: forcast)
                 
                 showActivityIndicator = false
+                
+                self.latitude = latitude
+                self.longitude = longitude
                 
             } catch {
                 showActivityIndicator = false
@@ -113,6 +119,8 @@ class WeatherViewModel {
         conditions = current.weather[0].description.uppercased()
         weatherTheme = getWeatherTheme(conditions: conditions.lowercased())
         city = current.name ?? ""
+        lastChecked = Date().formatted(date: .abbreviated, time: .shortened)
+        persistence.saveCurrentWeather(currentTemperature: currentTemperature, maximumTemperature: maximumTemperature, minimumTemperature: minimumTemperature, conditions: conditions.lowercased())
     }
     
     func updateWeatherForcastDetails(forcast:[Current]){
@@ -129,6 +137,42 @@ class WeatherViewModel {
                  forcastDetail.append(forcastItem)
                  previousDay = dayOfWeek
              }
+        }
+        
+        persistence.saveWeatherForcast(forcast: forcastDetail)
+    }
+    
+    func getSavedWeather() {
+        
+        if let currentWeather = persistence.getCurrentWeather() {
+            if currentTemperature == "" {
+                currentTemperature = currentWeather.currentTemperature
+            }
+            if maximumTemperature == "" {
+                maximumTemperature = currentWeather.maximumTemperature
+            }
+            if minimumTemperature == "" {
+                minimumTemperature = currentWeather.minimumTemperature
+            }
+            if lastChecked == "" {
+                lastChecked = currentWeather.createdOn.formatted(date: .abbreviated, time: .shortened)
+            }
+            if weatherTheme == .none {
+                weatherTheme = getWeatherTheme(conditions: currentWeather.conditions)
+            }
+        }
+        
+        let forcast = persistence.getWeatherForcast()
+        
+        if forcastDetail.count == 0 && forcast.count > 0 {
+            forcastDetail = forcast
+        }
+        
+    }
+    
+    func saveLocation() {
+        if latitude != 0.0 && longitude != 0.0 {
+            persistence.saveFavouriteLocation(city: city, street: street, province: province, latitude: latitude, longitude: longitude)
         }
     }
     

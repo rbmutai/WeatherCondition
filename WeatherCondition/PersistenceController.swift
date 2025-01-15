@@ -49,7 +49,7 @@ class PersistenceController {
         }
     }
     
-    func getCurrentWeather() -> (currentTemperature: String, minimumTemperature: String, maximumTemperature: String, createdOn: Date)? {
+    func getCurrentWeather() -> (currentTemperature: String, minimumTemperature: String, maximumTemperature: String, conditions: String, createdOn: Date)? {
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WeatherCurrent")
         
@@ -59,9 +59,10 @@ class PersistenceController {
                 let currentTemperature = item.value(forKey: "currentTemperature") as? String ?? ""
                 let minimumTemperature = item.value(forKey: "minimumTemperature") as? String ?? ""
                 let maximumTemperature = item.value(forKey: "maximumTemperature") as? String ?? ""
+                let conditions = item.value(forKey: "conditions") as? String ?? ""
                 let createdOn = item.value(forKey: "createdOn") as? Date ?? .distantFuture
                
-                return (currentTemperature, minimumTemperature, maximumTemperature, createdOn)
+                return (currentTemperature, minimumTemperature, maximumTemperature, conditions, createdOn)
             }
             
             return .none
