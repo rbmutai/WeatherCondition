@@ -164,6 +164,9 @@ class WeatherViewModel {
             if minimumTemperature == "" {
                 minimumTemperature = currentWeather.minimumTemperature
             }
+            if conditions == "" {
+                conditions = currentWeather.conditions.uppercased()
+            }
             if lastChecked == "" {
                 lastChecked = currentWeather.createdOn.formatted(date: .abbreviated, time: .shortened)
             }
