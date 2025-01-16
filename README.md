@@ -1,7 +1,9 @@
+<h1>WeatherCondition</h1>
+
 **Implementation Details**
 <br/>The app makes calls to the openweather API to fetch weather information. 
 <br/>It also utilises google apis to get further details on the location
-<br/>For networking calls, there is the use of concurrency via use of asynchronous network calls
+<br/>For networking calls, there is the use of concurrency via asynchronous network calls
 
 **Architecture**
 <br/> Build using MVVM architecture with Combine used for binding of views to data in the View Models
