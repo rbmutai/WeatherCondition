@@ -18,7 +18,7 @@ class AppCoordinator : Coordinator {
         favourites.viewModel = favouritesViewModel
         
         guard let checkWeather = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else { return }
-        let weatherViewModel = WeatherViewModel(apiService: APIService(), delegate: favouritesViewModel)
+        let weatherViewModel = WeatherViewModel(apiService: APIService())
         checkWeather.viewModel = weatherViewModel
 
         homeTabBarController.viewControllers = [checkWeather, favourites]

@@ -33,10 +33,8 @@ class WeatherViewModel {
     var longitude = 0.0
     let persistence = PersistenceController.shared
     let apiService: APIServiceProtocol
-    weak var delegate: FavouritesViewModelProtocol?
-    init(apiService: APIServiceProtocol, delegate: FavouritesViewModelProtocol?) {
+    init(apiService: APIServiceProtocol) {
         self.apiService = apiService
-        self.delegate = delegate
     }
     
     func getWeather (latitude: Double, longitude: Double) async {
@@ -199,7 +197,6 @@ class WeatherViewModel {
     func saveLocation() {
         if latitude != 0.0 && longitude != 0.0 {
             persistence.saveFavouriteLocation(city: city, street: street, province: province, latitude: latitude, longitude: longitude)
-            delegate?.favouriteSaved()
         }
     }
     

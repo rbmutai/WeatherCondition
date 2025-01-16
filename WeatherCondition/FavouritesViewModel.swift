@@ -8,11 +8,7 @@
 import Foundation
 import Combine
 
-protocol FavouritesViewModelProtocol: AnyObject {
-    func favouriteSaved()
-}
-
-class FavouritesViewModel: FavouritesViewModelProtocol {
+class FavouritesViewModel {
     
     @Published var favouriteLocations: [FavouriteLocationDetail] = []
     @Published var errorMessage = ""
@@ -26,7 +22,4 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         }
     }
     
-    func favouriteSaved() {
-        favouriteLocations = persistence.getFaouriteLocations()
-    }
 }

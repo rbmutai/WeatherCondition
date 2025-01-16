@@ -11,7 +11,7 @@ import XCTest
 final class WeatherConditionTests: XCTestCase {
 
     func testGetWeather() async {
-        let viewModel = WeatherViewModel(apiService: MockAPIService(), delegate: nil)
+        let viewModel = WeatherViewModel(apiService: MockAPIService())
        
         await viewModel.getWeather(latitude: -1.3033, longitude: 36.8264)
        
@@ -28,7 +28,7 @@ final class WeatherConditionTests: XCTestCase {
     }
     
     func testGetLocationDetails() async {
-        let viewModel = WeatherViewModel(apiService: MockAPIService(), delegate: nil)
+        let viewModel = WeatherViewModel(apiService: MockAPIService())
        
         await viewModel.getLocationDetail(latitude: -1.3033, longitude: 36.8264)
         

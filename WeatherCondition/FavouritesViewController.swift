@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 import Combine
-class FavouritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var favouritesTableView: UITableView!
     private var subscribers = Set<AnyCancellable>()
@@ -17,6 +17,7 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         favouritesTableView.delegate = self
         favouritesTableView.dataSource = self
+        self.tabBarController?.delegate = self
         // Do any additional setup after loading the view.
         bind()
     }
@@ -42,6 +43,12 @@ class FavouritesViewController: UIViewController, UITableViewDataSource, UITable
             .store(in: &subscribers)
         
         viewModel.loadFavouriteLocations()
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if tabBarController.selectedIndex == 1 {
+            viewModel?.loadFavouriteLocations()
+        }
     }
     
 
