@@ -191,8 +191,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
        
         switch locationManager.authorizationStatus {
-        case .restricted, .denied:
-            enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+            case .restricted, .denied:
+                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
             case .authorizedWhenInUse:
                 locationManager.startUpdatingLocation()
             default:

@@ -8,9 +8,11 @@
 import UIKit
 import MapKit
 import Combine
-class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+import CoreLocation
+class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var favouritesTableView: UITableView!
+    let locationManager = CLLocationManager()
     private var subscribers = Set<AnyCancellable>()
     var viewModel: FavouritesViewModel?
     override func viewDidLoad() {
@@ -20,6 +22,12 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
         self.tabBarController?.delegate = self
         // Do any additional setup after loading the view.
         bind()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.distanceFilter = 100
+        locationManager.delegate = self
+        
+        checkLocationAuthorization()
     }
     
     func bind() {
@@ -42,7 +50,30 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
             })
             .store(in: &subscribers)
         
+        viewModel.$mapAnnotations
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] value in
+                mapView.removeAnnotations(mapView.annotations)
+                mapView.addAnnotations(value)
+            })
+            .store(in: &subscribers)
+        
         viewModel.loadFavouriteLocations()
+    }
+    
+    func checkLocationAuthorization() {
+        switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted, .denied:
+                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+            case .authorizedWhenInUse:
+                locationManager.startUpdatingLocation()
+            default:
+                return
+        }
+        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -84,7 +115,11 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
         }
         
         let viewAction = UIContextualAction(style: .normal, title: "View") {
-            (action, sourceView, completionHandler) in
+            (action, sourceView, completionHandler)  in
+            
+            if let locationItem = self.viewModel?.favouriteLocations[indexPath.row] {
+                self.mapView.setCenter(CLLocationCoordinate2D(latitude: locationItem.latitude, longitude: locationItem.longitude), animated: true)
+            }
            
            completionHandler(true)
             
@@ -97,6 +132,46 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
         swipeConfiguration.performsFirstActionWithFullSwipe = false
         
         return swipeConfiguration
+    }
+    
+    //Location Manager Delegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       
+        if let geoLocation = locations.first {
+            viewModel?.updateCurrentLocation(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude)
+            mapView.setCenter(CLLocationCoordinate2D(latitude: geoLocation.coordinate.latitude, longitude: geoLocation.coordinate.longitude), animated: true)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showAlert(message: "Failed to get location: \(error.localizedDescription)")
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+       
+        switch locationManager.authorizationStatus {
+            case .restricted, .denied:
+                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+            case .authorizedWhenInUse:
+                locationManager.startUpdatingLocation()
+            default:
+                return
+        }
+    }
+    
+    func enableLocationAlert(message: String){
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+       
+        let approveAction = UIAlertAction(title: "Settings", style: .default) {
+            UIAlertAction in
+            
+                let settingsURL = URL(string: UIApplication.openSettingsURLString)!
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Ignore", style: .default, handler: nil)
+        alert.addAction(approveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func showAlert(message: String) {
