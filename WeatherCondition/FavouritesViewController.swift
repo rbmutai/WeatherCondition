@@ -67,7 +67,7 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
             case .restricted, .denied:
-                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+                enableLocationAlert()
             case .authorizedWhenInUse:
                 locationManager.startUpdatingLocation()
             default:
@@ -151,7 +151,7 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
        
         switch locationManager.authorizationStatus {
             case .restricted, .denied:
-                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+                enableLocationAlert()
             case .authorizedWhenInUse:
                 locationManager.startUpdatingLocation()
             default:
@@ -159,8 +159,8 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
         }
     }
     
-    func enableLocationAlert(message: String){
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+    func enableLocationAlert(){
+        let alert = UIAlertController(title: "Alert", message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information", preferredStyle: .alert)
        
         let approveAction = UIAlertAction(title: "Settings", style: .default) {
             UIAlertAction in

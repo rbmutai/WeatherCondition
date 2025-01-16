@@ -192,7 +192,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        
         switch locationManager.authorizationStatus {
             case .restricted, .denied:
-                enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+                enableLocationAlert()
             case .authorizedWhenInUse:
                 locationManager.startUpdatingLocation()
             default:
@@ -209,7 +209,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 await  viewModel?.getLocationDetail(latitude: coodinates.coordinate.latitude, longitude: coodinates.coordinate.longitude)
             }
         } else {
-            enableLocationAlert(message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information")
+            enableLocationAlert()
         }
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -232,8 +232,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(alert, animated: true)
     }
     
-    func enableLocationAlert(message: String){
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+    func enableLocationAlert(){
+        let alert = UIAlertController(title: "Alert", message: "Location Services Disabled. Please enable Location Services in Settings in order to get location based weather information", preferredStyle: .alert)
        
         let approveAction = UIAlertAction(title: "Settings", style: .default) {
             UIAlertAction in
