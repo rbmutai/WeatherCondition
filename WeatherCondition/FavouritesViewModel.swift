@@ -22,4 +22,8 @@ class FavouritesViewModel {
         }
     }
     
+    func deleteFavouriteLocation(city: String) {
+        persistence.deleteFavouriteLocation(city: city)
+    }
+    
 }

@@ -73,6 +73,11 @@ class FavouritesViewController: UIViewController, UITabBarControllerDelegate, UI
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {
             (action, sourceView, completionHandler) in
+            
+            if let locationItem = self.viewModel?.favouriteLocations[indexPath.row] {
+                self.viewModel?.deleteFavouriteLocation(city: locationItem.city)
+                self.viewModel?.loadFavouriteLocations()
+            }
            
            completionHandler(true)
             
