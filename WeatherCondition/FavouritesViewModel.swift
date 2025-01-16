@@ -27,14 +27,14 @@ class FavouritesViewModel {
         } else {
             var annotations: [MapAnnotation] = []
             for item in favouriteLocations {
-                let annotation = MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), city: item.city)
+                let annotation = MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), title: item.city)
                 annotations.append(annotation)
             }
             mapAnnotations =  annotations
         }
         
         if latitude != 0.0 && longitude != 0.0 {
-            let annotation = MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), city: "My Location")
+            let annotation = MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), title: "My Location")
             mapAnnotations.append(annotation)
         }
     }

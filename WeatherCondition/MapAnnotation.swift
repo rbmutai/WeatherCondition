@@ -10,9 +10,9 @@ import MapKit
 
 class MapAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    var city: String
-    init(coordinate: CLLocationCoordinate2D, city: String) {
+    let title: String?
+    init(coordinate: CLLocationCoordinate2D, title: String) {
         self.coordinate = coordinate
-        self.city = city
+        self.title = title
     }
 }
